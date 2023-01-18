@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block messages %}
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+            {% for message in messages %}
+              {% set display = slice(message, "1:") %}
+              {% set prefix = slice[0] %}
+              {% if prefix == "1" %}
+                <div class="alert alert-secondary" role="alert">
+                {{ display }}
+                </div>
+              {% else %}
+                <div class="alert alert-danger" role="alert">
+                {{ display }}
+                </div>
+              {% endif %}
+            {% endfor %}
+      {% endif %}
+    {% endwith %}
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.login-page {
+  width: 720px;
+  height: 540px;
+  padding: 8% 0 0;
+  margin: auto;
+  background: #ffffff;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #00c8ff;
+  max-width: 720px;
+  max-height: 540px;
+  margin: 0 auto 100px;
+  padding: 90px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #ffffff;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button {
+  text-transform: uppercase;
+  outline: 0;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #bbff00;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: #2200ff;
+}
+.form .message {
+  margin: 15px 0 0;
+  color: #00c3ff;
+  font-size: 12px;
+}
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.container:before, .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+</style>
+
+<div class="login-page">
+  <div class="form">
+    <form class="login-form" action="#" method="POST">
+      <input type="text" name="inputName" id="inputName" placeholder="First Name"/>
+      <input type="text" name="tempinputName" id="tempinputName" placeholder="Last Name"/>
+      
+      <button type="submit" class="btn btn-success mb-2">Enter Room</button>
+    </form>
+  </div>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
+{% endblock %}
